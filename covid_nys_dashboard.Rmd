@@ -7,7 +7,7 @@ output:
     social: menu
     theme: readable
     vertical_layout: fill
-date: 'Last Updated: `r Sys.time()`'
+date: 'Last Updated: `r Sys.time()` UTC'
 runtime: shiny
 resource_files:
 - data/covid_count_map/covid_count.dbf
