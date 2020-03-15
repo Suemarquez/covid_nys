@@ -1,0 +1,12 @@
+name: covid_nys_dashboard
+title: covid_nys_dashboard
+username:
+account: smarquez
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1941409
+bundleId: 2882400
+url: https://smarquez.shinyapps.io/covid_nys_dashboard/
+when: 1584242437.53152
+asMultiple: FALSE
+asStatic: FALSE
