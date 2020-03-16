@@ -19,12 +19,14 @@ resource_files:
 # Load libraries needed
 
 library(flexdashboard)
+library(knitr)
 library(mapview)
 library(leaflet)
 library(dichromat)
 library(ggthemr)
 library(plotly)
 library(lubridate)
+library(DT)
 library(data.table)
 library(sp)
 library(sf)
@@ -63,6 +65,10 @@ levels <- covid_time_series %>%
 
 covid_time_series$county <- factor(covid_time_series$county, levels = levels)
 ```
+
+
+Dashboard
+====================================================================== 
 
 Data source: [New York State Department of Health](https://health.ny.gov/diseases/communicable/coronavirus/)
 
@@ -130,6 +136,5 @@ m <- mapview(covid_map,
 
 m@map %>% setView(lng = -74, lat = 42, zoom = 6.5)
 ```
-
 
 
