@@ -216,7 +216,7 @@ On a daily basis the [NY Department of Health](https://health.ny.gov/diseases/co
 1. Cases at the borough level for New York City. 
 2. Daily count of number of COVID tests performed.
 
-Given the cummulative count, it was hard to know the change in number cases from day to day, reason why I started scrapping the website on a daily basis. 
+Given the cummulative count, it was hard to know the change in number cases from day to day, reason why I started scraping the website on a daily basis. 
 
 If you are interested in obtaining the csv file, you can either download it below or access my [github repository](https://github.com/Suemarquez/covid_nys), which also includes associated code. 
 
