@@ -4,7 +4,7 @@ library(tidyverse)
 library(stringr)
 library(rvest)
 
-url <- read_html("https://health.ny.gov/diseases/communicable/coronavirus/")
+url <- read_html("https://coronavirus.health.ny.gov/county-county-breakdown-positive-cases")
 
 covid_count_table <- html_nodes(url, "table") %>%
   .[[1]] %>%
