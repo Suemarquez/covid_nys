@@ -20,6 +20,7 @@ resource_files:
 
 library(flexdashboard)
 library(knitr)
+library(shiny)
 library(mapview)
 library(leaflet)
 library(dichromat)
@@ -135,6 +136,116 @@ m <- mapview(covid_map,
 )
 
 m@map %>% setView(lng = -74, lat = 42, zoom = 6.5)
+```
+
+
+Data
+====================================================================== 
+
+Column {data-width = 450}
+-----------------------------------------------------------------------
+
+###
+
+```{r}
+
+# Time series of covid-19 cases in NY State
+covid_series_dataset <- fread("data/covid_time_series/covid_time_series.csv") %>%
+  clean_names() %>%
+  mutate(date = ymd(date))
+# Define UI
+
+ui <- fluidPage(
+  titlePanel("COVID-19 positive cases in New York State"),
+
+  # Rows for selected inputs
+  fluidRow(
+    column(
+      2,
+      selectInput(
+        "county",
+        "County:",
+        c("All", unique(as.character(covid_series_dataset$county)))
+      )
+    ),
+    column(
+      2,
+      selectInput(
+        "date",
+        "Date:",
+        c("All", unique(as.character(covid_series_dataset$date)))
+      )
+    ),
+    # Create a new row for the table
+    dataTableOutput("table")
+  )
+)
+
+# Define server logic
+server <-
+  function(input, output) {
+
+    # Filter data based on selected items
+    output$table <- renderDataTable(DT::datatable({
+      data <- covid_series_dataset
+      if (input$county != "All") {
+        data <- data[data$county == input$county, ]
+      }
+      if (input$date != "All") {
+        data <- data[as.Date(data$date) == input$date, ]
+      }
+      data
+    }),  options = list(pageLength = 25))
+  }
+
+# Run the app
+shinyApp(ui = ui, server = server)
+```
+
+Column {data-width = 450}
+-----------------------------------------------------------------------
+
+### 
+
+Hi, 
+
+My name is Sue Marquez. I am a Data Scientist based in New York City. At the beggining of COVID-19 epidemic in the US I started collecting daily updates on the number of cases testing positive for the COVID-19 in the state of New York. 
+
+On a daily basis the [NY Department of Health](https://health.ny.gov/diseases/communicable/coronavirus/) was updating the cummulative count of cases testing positive for COVID-19 at the county level. During the crisis the NYS COVID website WAS NOT publicly reporting:
+
+1. Cases at the borough level for New York City. 
+2. Daily count of number of COVID tests performed.
+
+Given the cummulative count, it was hard to know the change in number cases from day to day, reason why I started scrapping the website on a daily basis. 
+
+If you are interested in obtaining the csv file, you can either download it below or access my [github repository](https://github.com/Suemarquez/covid_nys), which also includes associated code. 
+
+
+
+
+```{r}
+# Dowload data 
+ui <- fluidPage(
+  titlePanel("Download Data"),
+  
+  # Button
+  downloadButton("downloadData", "Download")
+)
+
+server <- function(input, output) {
+  
+  datasetInput <- fread("data/covid_time_series/covid_time_series.csv")
+  
+  output$downloadData <- downloadHandler(
+    filename = "covid_nys_time_series.csv",
+    content = function(file) {
+      write.csv(datasetInput, file, row.names = FALSE)
+    }
+  )
+}
+
+# Run the app
+shinyApp(ui = ui, server = server)
 ```
 
 
