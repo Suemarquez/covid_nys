@@ -10,10 +10,11 @@ covid_count_table <- html_nodes(url, "table") %>%
   .[[1]] %>%
   html_table() %>%
  # rename("County" = "") %>%
-  filter(!grepl("Outside|Statewide", County)) %>%
+  filter(!grepl("Outside|Statewide|Total", County)) %>%
   mutate(County = gsub(" County.*", "", County)) %>%
   mutate(County = str_replace_all(County, "[[:punct:]]", "")) %>%
-  mutate(Date = Sys.Date())
+  mutate(`Positive Cases` = parse_number(`Positive Cases`)) %>%
+  mutate(Date = Sys.Date()) 
 
 path_countdata <- paste0("data/covid_count_daily/covid_nys_", gsub("-", "", Sys.Date()), ".csv")
 

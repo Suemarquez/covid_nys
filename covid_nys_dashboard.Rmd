@@ -89,7 +89,7 @@ county_cases_counties <- covid_time_series %>%
   labs(
     x = "Date",
     y = "Positive Cases",
-    title = "Cummulative COVID-19 in New York State counties"
+    title = "Cumulative COVID-19 in New York State counties"
   )
 
 ggplotly(county_cases_counties)
@@ -112,7 +112,7 @@ covid_ny <- covid_time_series %>%
   labs(
     x = "Date",
     y = "Positive Cases",
-    title = "Cummulative COVID-19 in New York State"
+    title = "Cumulative COVID-19 in New York State"
   ) +
   theme(legend.position = "right")
 
@@ -211,12 +211,12 @@ Hi,
 
 My name is Sue Marquez. I am a Data Scientist based in New York City. At the beggining of COVID-19 epidemic in the US I started collecting daily updates on the number of cases testing positive for the COVID-19 in the state of New York. 
 
-On a daily basis the [NY Department of Health](https://coronavirus.health.ny.gov/county-county-breakdown-positive-cases) was updating the cummulative count of cases testing positive for COVID-19 at the county level. During the crisis the NYS COVID website WAS NOT publicly reporting:
+On a daily basis the [NY Department of Health](https://coronavirus.health.ny.gov/county-county-breakdown-positive-cases) was updating the cumulative count of cases testing positive for COVID-19 at the county level. During the crisis the NYS COVID website WAS NOT publicly reporting:
 
 1. Cases at the borough level for New York City. 
 2. Daily count of number of COVID tests performed.
 
-Given the cummulative count, it was hard to know the change in number cases from day to day, reason why I started scraping the website on a daily basis. 
+Given the cumulative count, it was hard to know the change in number cases from day to day, reason why I started scraping the website on a daily basis. 
 
 If you are interested in obtaining the csv file, you can either download it below or access my [github repository](https://github.com/Suemarquez/covid_nys), which also includes associated code. 
 

@@ -1,8 +1,8 @@
 # covid_nys
 
-This repository contains R scripts that: 
-1. Scrape COVID-19 official count from the [New York State Department of Health COVID-19 page](https://health.ny.gov/diseases/communicable/coronavirus/).  
-2. Matches the county name to the most recent [NY state coastline shapefile](http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=927). 
+This repository contains R scripts that:
+1. Scrape COVID-19 official count from the [New York State Department of Health COVID-19 page](https://coronavirus.health.ny.gov/county-county-breakdown-positive-cases).  
+2. Matches the county name to the most recent [NY state coastline shapefile](http://gis.ny.gov/gisdata/inventories/details.cfm?DSID=927).
 3. Summarizes the data in a shiny dashboard hosted [here](https://smarquez.shinyapps.io/covid_nys_dashboard/).
 
 ## Structure of the data files
@@ -32,6 +32,4 @@ The start date for this count data is March 09, 2020 and is updated daily at 9pm
 
 If you only need the time series, go straight and fetch the file `covid_time_series.csv`.
 
-Publicly available data on daily number of tests is not available. 
-
-
+Publicly available data on daily number of tests is not available.
