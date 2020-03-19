@@ -5,8 +5,8 @@ account: smarquez
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 1941409
-bundleId: 2895316
+bundleId: 2898873
 url: https://smarquez.shinyapps.io/covid_nys_dashboard/
-when: 1584559767.05711
+when: 1584640390.31404
 asMultiple: FALSE
 asStatic: FALSE
