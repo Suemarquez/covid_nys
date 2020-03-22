@@ -20,6 +20,7 @@ resource_files:
 
 library(flexdashboard)
 library(knitr)
+library(scales)
 library(shiny)
 library(mapview)
 library(leaflet)
@@ -84,6 +85,7 @@ ggthemr("dust")
 
 county_cases_counties <- covid_time_series %>%
   ggplot(aes(x = date, y = positive_cases, group = county, colour = county)) +
+  scale_y_continuous(labels = scales::unit_format(unit = "K", scale = 10e-4)) +
   geom_line() +
   geom_point() +
   labs(
@@ -91,6 +93,7 @@ county_cases_counties <- covid_time_series %>%
     y = "Positive Cases",
     title = "Cumulative COVID-19 in New York State counties"
   )
+  
 
 ggplotly(county_cases_counties)
 ```
@@ -106,6 +109,7 @@ covid_ny <- covid_time_series %>%
   summarise(positive_cases = sum(positive_cases)) %>%
   mutate(new_cases = positive_cases - lag(positive_cases)) %>%
   ggplot(aes(x = date, y = positive_cases)) +
+  scale_y_continuous(labels = scales::unit_format(unit = "K", scale = 10e-4)) +
   geom_line() +
   geom_point() +
   geom_bar(aes(y = new_cases), stat = "identity") +

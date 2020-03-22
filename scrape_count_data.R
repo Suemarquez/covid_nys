@@ -2,6 +2,7 @@
 
 library(tidyverse)
 library(stringr)
+library(tabulizer)
 library(rvest)
 
 url <- read_html("https://coronavirus.health.ny.gov/county-county-breakdown-positive-cases")
@@ -19,4 +20,3 @@ covid_count_table <- html_nodes(url, "table") %>%
 path_countdata <- paste0("data/covid_count_daily/covid_nys_", gsub("-", "", Sys.Date()), ".csv")
 
 write_csv(covid_count_table, path = path_countdata)
-
