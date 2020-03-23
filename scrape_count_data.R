@@ -2,7 +2,7 @@
 
 library(tidyverse)
 library(stringr)
-library(tabulizer)
+library(pdftools)
 library(rvest)
 
 url <- read_html("https://coronavirus.health.ny.gov/county-county-breakdown-positive-cases")
