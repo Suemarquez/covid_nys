@@ -1,0 +1,107 @@
+---
+title: "Scrape pdfs from NYC health on Covid-19"
+author: "Sue Marquez"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+# Call reticulate for python and load r libraries
+library(reticulate)
+library(janitor)
+library(data.table)
+library(tidyverse)
+use_condaenv("r-reticulate")
+#py_install("pandas")
+#py_install("tabula-py")
+```
+
+```{python}
+import tabula #library that extracts tables from pdfs
+
+nyc_count = tabula.read_pdf("https://www1.nyc.gov/assets/doh/downloads/pdf/imm/covid-19-daily-data-summary.pdf")
+nyc_hosp = tabula.read_pdf("https://www1.nyc.gov/assets/doh/downloads/pdf/imm/covid-19-daily-data-summary-hospitalizations.pdf")
+nyc_deaths = tabula.read_pdf("https://www1.nyc.gov/assets/doh/downloads/pdf/imm/covid-19-daily-data-summary-deaths.pdf")
+
+```
+
+```{r}
+
+# --- Clean cases and total deaths data 
+
+nyc_count_table <- py$nyc_count 
+nyc_count_table <- nyc_count_table %>%
+  clean_names() %>%
+  rename("group" = "x") %>%
+  select(group, total_cases) %>%
+  mutate(total_cases = gsub(pattern = "\\s+\\([0-9]*%\\)|\\D+\\([0-9]*-[0-9]*\\)", replacement = "", total_cases),
+         total_cases = as.numeric(ifelse(total_cases == "Nan", NaN, total_cases)),
+         group = gsub("[[:punct:]]\\s+", "", group),
+         Date = Sys.Date(),
+         variable = c(rep("Total", 2), rep("Age group", 7), rep("Age 50 and over", 3), rep("Sex", 4), rep("Borough", 7), rep("Deaths", 1))) %>%
+  filter(!is.nan(total_cases)) %>%
+  select(Date, variable, group, total_cases)
+
+write_csv(nyc_count_table, paste0("data/covid_nyc_daily/cases_", gsub("-", "", Sys.Date()), ".csv"))
+  
+# --- Clean hospitalization table 
+nyc_hosp_count <- py$nyc_hosp
+nyc_hosp_count <- nyc_hosp_count %>%
+  clean_names() %>%
+  rename(total_hosp = unnamed_1,
+         total_cases = unnamed_2,
+         group = age_group) %>%
+  mutate(total_hosp = gsub(pattern = "\\s+\\([0-9]*%\\)", "", total_hosp),
+         total_hosp = as.numeric(ifelse(total_hosp == "NaN", NaN, total_hosp)),
+         group = gsub("[[:punct:]]\\s+", "", group),
+         variable = c(rep("Age group", 6), rep("Sex", 4), rep("Borough", 7), "Total"),
+         Date = Sys.Date()) %>%
+  select(Date, variable, group, total_hosp, total_cases) %>%
+  filter(!is.nan(total_hosp))
+
+write_csv(nyc_count_table, paste0("data/covid_nyc_daily/hosp_", gsub("-", "", Sys.Date()), ".csv"))
+
+# --- Clean deaths data 
+nyc_death_count <- py$nyc_deaths
+nyc_death_count <- nyc_death_count %>%
+  clean_names() %>%
+  rename(group = age_group,
+         d_exist_cond = unnamed_1,
+         d_no_cond = unnamed_2,
+         d_pending = unnamed_3,
+         d_total = unnamed_4) %>%
+  mutate(group = gsub("[[:punct:]]\\s+", "", group)) %>%
+  mutate(Date = Sys.Date(),
+         variable = c(rep("Age group", 5), rep("Sex", 3), rep("Borough", 7), "Total")) %>%
+  filter(!is.nan(d_total)) %>%
+  select(Date, variable, group, d_exist_cond, d_no_cond, d_pending, d_total)
+
+write_csv(nyc_death_count, paste0("data/covid_nyc_daily/deaths_", gsub("-", "", Sys.Date()), ".csv"))
+
+# --- Join datasets
+
+list_hosp <- paste0("data/covid_nyc_daily/", list.files(path = "data/covid_nyc_daily", pattern = "hosp_*"))
+list_deaths <- paste0("data/covid_nyc_daily/", list.files(path = "data/covid_nyc_daily", pattern = "deaths_*"))
+
+# Function to rbind files
+covid_bind_fx <- function(list_files) {
+  tables <- list()
+  tables <- lapply(list_files, fread, header = TRUE)
+  covid_series <- do.call(rbind, tables)
+  return(covid_series)
+}
+
+series_hosp <- covid_bind_fx(list_hosp) %>%
+  filter(variable != "Deaths")
+series_deaths <- covid_bind_fx(list_deaths)
+
+cases_hosp_deaths <- series_hosp %>%
+  left_join(series_deaths, by = c("variable" = "variable", 
+                                    "group" = "group",
+                                    "Date" = "Date"))
+
+write_csv(cases_hosp_deaths, paste0("data/covid_nyc_daily/all_cases_hosp_deaths.csv"))
+
+
+
+```
