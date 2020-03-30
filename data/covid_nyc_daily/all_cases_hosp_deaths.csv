@@ -1,0 +1,41 @@
+Date,variable,group,total_cases,d_exist_cond,d_no_cond,d_pending,d_total
+2020-03-28,Total,Total,29158,527,17,128,672
+2020-03-28,Total,Median Age (Range),47,NA,NA,NA,NA
+2020-03-28,Age group,0 to 17,573,0,0,0,0
+2020-03-28,Age group,18 to 44,12590,23,1,8,32
+2020-03-28,Age group,45 to 64,10019,125,8,28,161
+2020-03-28,Age group,65 to 74,3354,125,2,31,158
+2020-03-28,Age group,75 and over,2568,254,6,61,321
+2020-03-28,Age group,Unknown,54,NA,NA,NA,NA
+2020-03-28,Age 50 and over,Yes,13468,NA,NA,NA,NA
+2020-03-28,Age 50 and over,No,15636,NA,NA,NA,NA
+2020-03-28,Sex,Female,12928,213,6,42,261
+2020-03-28,Sex,Male,16192,314,11,86,411
+2020-03-28,Sex,Unknown,38,NA,NA,NA,NA
+2020-03-28,Borough,Bronx,5352,142,1,9,152
+2020-03-28,Borough,Brooklyn,7789,112,5,50,167
+2020-03-28,Borough,Manhattan,5036,71,2,20,93
+2020-03-28,Borough,Queens,9228,168,9,39,216
+2020-03-28,Borough,Staten Island,1718,33,0,10,43
+2020-03-28,Borough,Unknown,35,1,0,0,1
+2020-03-28,Deaths,Deaths,517,NA,NA,NA,NA
+2020-03-29,Total,Total,33474,624,13,139,776
+2020-03-29,Total,Median Age (Range),48,NA,NA,NA,NA
+2020-03-29,Age group,0 to 17,619,1,0,0,1
+2020-03-29,Age group,18 to 44,14233,28,1,10,39
+2020-03-29,Age group,45 to 64,11577,140,8,37,185
+2020-03-29,Age group,65 to 74,3954,152,1,30,183
+2020-03-29,Age group,75 and over,3020,303,3,62,368
+2020-03-29,Age group,Unknown,71,NA,NA,NA,NA
+2020-03-29,Age 50 and over,Yes,15706,NA,NA,NA,NA
+2020-03-29,Age 50 and over,No,17697,NA,NA,NA,NA
+2020-03-29,Sex,Female,14837,246,5,51,302
+2020-03-29,Sex,Male,18593,378,8,88,474
+2020-03-29,Sex,Unknown,44,NA,NA,NA,NA
+2020-03-29,Borough,Bronx,6250,176,0,12,188
+2020-03-29,Borough,Brooklyn,8887,136,5,44,185
+2020-03-29,Borough,Manhattan,5582,82,1,20,103
+2020-03-29,Borough,Queens,10737,194,7,52,253
+2020-03-29,Borough,Staten Island,1984,35,0,11,46
+2020-03-29,Borough,Unknown,34,1,0,0,1
+2020-03-29,Deaths,Deaths,776,NA,NA,NA,NA

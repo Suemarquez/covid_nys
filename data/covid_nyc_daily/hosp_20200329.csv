@@ -1,0 +1,21 @@
+Date,variable,group,total_cases
+2020-03-29,Total,Total,33474
+2020-03-29,Total,Median Age (Range),48
+2020-03-29,Age group,0 to 17,619
+2020-03-29,Age group,18 to 44,14233
+2020-03-29,Age group,45 to 64,11577
+2020-03-29,Age group,65 to 74,3954
+2020-03-29,Age group,75 and over,3020
+2020-03-29,Age group,Unknown,71
+2020-03-29,Age 50 and over,Yes,15706
+2020-03-29,Age 50 and over,No,17697
+2020-03-29,Sex,Female,14837
+2020-03-29,Sex,Male,18593
+2020-03-29,Sex,Unknown,44
+2020-03-29,Borough,Bronx,6250
+2020-03-29,Borough,Brooklyn,8887
+2020-03-29,Borough,Manhattan,5582
+2020-03-29,Borough,Queens,10737
+2020-03-29,Borough,Staten Island,1984
+2020-03-29,Borough,Unknown,34
+2020-03-29,Deaths,Deaths,776

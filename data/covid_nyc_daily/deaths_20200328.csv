@@ -1,0 +1,15 @@
+Date,variable,group,d_exist_cond,d_no_cond,d_pending,d_total
+2020-03-28,Age group,0 to 17,0,0,0,0
+2020-03-28,Age group,18 to 44,23,1,8,32
+2020-03-28,Age group,45 to 64,125,8,28,161
+2020-03-28,Age group,65 to 74,125,2,31,158
+2020-03-28,Age group,75 and over,254,6,61,321
+2020-03-28,Sex,Female,213,6,42,261
+2020-03-28,Sex,Male,314,11,86,411
+2020-03-28,Borough,Bronx,142,1,9,152
+2020-03-28,Borough,Brooklyn,112,5,50,167
+2020-03-28,Borough,Manhattan,71,2,20,93
+2020-03-28,Borough,Queens,168,9,39,216
+2020-03-28,Borough,Staten Island,33,0,10,43
+2020-03-28,Borough,Unknown,1,0,0,1
+2020-03-28,Total,Total,527,17,128,672
